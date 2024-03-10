@@ -56,40 +56,56 @@ def detect_shapes(image_path):
         # 标记识别出的形状
         x = approx.ravel()[0]
         y = approx.ravel()[1] - 5
-        cv2.putText(img, f"{contour_info['shape']}", (x, y),0.5, color, 2)
+        cv2.putText(img, f"{contour_info['shape']}", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
         # 选择性地展示处理后的图像
         cv2.drawContours(img, [cnt], 0, color, 2)  # 在原图上标记轮廓
         cv2.imshow("Contours Detected", img)
-        cv2.waitKey(1)
+        # cv2.waitKey(1)
         # cv2.destroyAllWindows()
 
     return contours_info
 
-def process_images_in_folder(folder_path, csv_file_path):
-    # 检查CSV文件是否已存在，以决定是否需要写入头部
-    file_exists = os.path.isfile(csv_file_path)
+def generate_csv_headers(max_points):
+    # 动态生成列标题
+    fieldnames = ['image', 'shape', 'length']
+    for i in range(max_points):
+        fieldnames.extend([f'point_{i+1}_x', f'point_{i+1}_y'])
+    return fieldnames
 
-    with open(csv_file_path, 'a', newline='') as csvfile:
-        fieldnames = ['image', 'shape', 'length', 'point_x', 'point_y']
+def process_images_in_folder(folder_path, csv_file_path):
+    max_points = 0
+    data = []
+
+    # 预处理：遍历所有图像，收集形状信息和最大点数
+    filenames = sorted(os.listdir(folder_path))
+    for filename in filenames:
+        if filename.endswith(".jpg"):
+            image_path = os.path.join(folder_path, filename)
+            contours_info = detect_shapes(image_path)
+            for contour_info in contours_info:
+                max_points = max(max_points, len(contour_info['coordinates']))
+                data.append((filename, contour_info))
+
+    # 生成列标题
+    fieldnames = generate_csv_headers(max_points)
+
+    # 写入CSV文件
+    with open(csv_file_path, 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        if not file_exists:
-            writer.writeheader()
-        
-        filenames = sorted(os.listdir(folder_path))  # 这里添加了排序
-        for filename in filenames:
-            if filename.endswith(".jpg"):  # 检查文件扩展名
-                image_path = os.path.join(folder_path, filename)
-                contours_info = detect_shapes(image_path)
-                
-                for contour_info in contours_info:
-                    shape = contour_info['shape']
-                    length = contour_info['length']
-                    coordinates = contour_info['coordinates']
-                    
-                    # for point in contour_info['coordinates']:
-                    #     x, y = point[0], point[1]  # 假设每个坐标是一个包含两个元素的列表或元组
-                    #     writer.writerow({'image': filename, 'shape': shape, 'length': length, 'point_x': x, 'point_y': y})
+        writer.writeheader()
+
+        # 写入数据
+        for filename, contour_info in data:
+            row_dict = {
+                'image': filename,
+                'shape': contour_info['shape'],
+                'length': contour_info['length']
+            }
+            for i, point in enumerate(contour_info['coordinates']):
+                row_dict[f'point_{i+1}_x'] = point[0][0]
+                row_dict[f'point_{i+1}_y'] = point[0][1]
+            writer.writerow(row_dict)
 
 # 调用函数
 # image_path = '/Users/zhoudexiao/Downloads/triangulation/frames 4/frame_00000.jpg'  # 替换为你的图片路径
@@ -100,6 +116,18 @@ def process_images_in_folder(folder_path, csv_file_path):
 #     print(contour)
 
 
-folder_path = '/Users/zhoudexiao/Downloads/triangulation/frames 3'  # 更新为你的文件夹路径
-csv_file_path = '/Users/zhoudexiao/Downloads/triangulation/frames 3/shapes_data.csv'
-process_images_in_folder(folder_path, csv_file_path)
+folder_path_3 = '/Users/zhoudexiao/Downloads/triangulation/frames 3'  # 更新为你的文件夹路径
+csv_file_path_3 = '/Users/zhoudexiao/Downloads/triangulation/frames 3/shapes_data.csv'
+process_images_in_folder(folder_path_3, csv_file_path_3)
+
+folder_path_4 = '/Users/zhoudexiao/Downloads/triangulation/frames 4'  # 更新为你的文件夹路径
+csv_file_path_4 = '/Users/zhoudexiao/Downloads/triangulation/frames 4/shapes_data.csv'
+process_images_in_folder(folder_path_4, csv_file_path_4)
+
+folder_path_5 = '/Users/zhoudexiao/Downloads/triangulation/frames 5'  # 更新为你的文件夹路径
+csv_file_path_5 = '/Users/zhoudexiao/Downloads/triangulation/frames 5/shapes_data.csv'
+process_images_in_folder(folder_path_5, csv_file_path_5)
+
+folder_path_6 = '/Users/zhoudexiao/Downloads/triangulation/frames 6'  # 更新为你的文件夹路径
+csv_file_path_6 = '/Users/zhoudexiao/Downloads/triangulation/frames 6/shapes_data.csv'
+process_images_in_folder(folder_path_6, csv_file_path_6)

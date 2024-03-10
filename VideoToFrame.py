@@ -17,7 +17,7 @@ def video_to_frames(video_path, frames_dir):
             break  # 如果没有帧了，就结束循环
 
         # 构建保存帧的路径
-        frame_path = os.path.join(frames_dir, f"frame_{frame_count:05d}.jpg")
+        frame_path = os.path.join(frames_dir, f"{frame_count:04d}.jpg")
         # 保存帧为图片
         cv2.imwrite(frame_path, frame)
         frame_count += 1
