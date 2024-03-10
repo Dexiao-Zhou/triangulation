@@ -18,13 +18,13 @@ def classify_shapes(input_csv, output_csv_triangle, output_csv_rectangle):
     # 步骤2: 写入三角形数据
     with open(output_csv_triangle, mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Column1', 'Shape', 'Column3', 'Column4'])  # 示例头部，根据需要调整
+        writer.writerow(['image', 'Shape', 'length', 'point_1_x', 'point_1_y', 'point_2_x','point_2_y', 'point_3_x', 'point_3_y'])  # 示例头部，根据需要调整
         writer.writerows(triangles)
 
     # 步骤3: 写入四边形数据
     with open(output_csv_rectangle, mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Column1', 'Shape', 'Column3', 'Column4'])  # 示例头部，根据需要调整
+        writer.writerow(['image', 'Shape', 'length', 'point_1_x', 'point_1_y', 'point_2_x','point_2_y', 'point_3_x', 'point_3_y', 'point_4_x', 'point_4_y'])  # 示例头部，根据需要调整
         writer.writerows(rectangles)
 
 # 调用函数
