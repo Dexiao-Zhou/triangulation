@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-
+import csv
 
 def detect_shapes(image_path):
     # 读取图片
@@ -55,7 +55,7 @@ def detect_shapes(image_path):
         # 标记识别出的形状
         x = approx.ravel()[0]
         y = approx.ravel()[1] - 5
-        cv2.putText(img, f"{contour_info['shape']}:", (x, y), cv2.FONT_HERSHEY_SIMPLEX,
+        cv2.putText(img, f"{contour_info['shape']}", (x, y), cv2.FONT_HERSHEY_SIMPLEX,
                     0.5, color, 2)
 
         # 选择性地展示处理后的图像
@@ -67,7 +67,7 @@ def detect_shapes(image_path):
     return contours_info
 
 # 调用函数
-image_path = '/Users/zhoudexiao/Downloads/triangulation/frames 6/frame_00000.jpg'  # 替换为你的图片路径
+image_path = '/Users/zhoudexiao/Downloads/triangulation/frames 4/frame_00000.jpg'  # 替换为你的图片路径
 contours_info = detect_shapes(image_path)
 
 for contour in contours_info:
