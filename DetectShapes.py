@@ -116,18 +116,18 @@ def process_images_in_folder(folder_path, csv_file_path):
 #     print(contour)
 
 
-folder_path_3 = '/Users/zhoudexiao/Downloads/triangulation/frames 3'  # 更新为你的文件夹路径
-csv_file_path_3 = '/Users/zhoudexiao/Downloads/triangulation/frames 3/shapes_data.csv'
+folder_path_3 = '/Users/zhoudexiao/Desktop/Project/triangulation/frames 3'  # 更新为你的文件夹路径
+csv_file_path_3 = '/Users/zhoudexiao/Desktop/Project/triangulation/frames 3/shapes_data.csv'
 process_images_in_folder(folder_path_3, csv_file_path_3)
 
-folder_path_4 = '/Users/zhoudexiao/Downloads/triangulation/frames 4'  # 更新为你的文件夹路径
-csv_file_path_4 = '/Users/zhoudexiao/Downloads/triangulation/frames 4/shapes_data.csv'
-process_images_in_folder(folder_path_4, csv_file_path_4)
+# folder_path_4 = '/Users/zhoudexiao/Downloads/triangulation/frames 4'  # 更新为你的文件夹路径
+# csv_file_path_4 = '/Users/zhoudexiao/Downloads/triangulation/frames 4/shapes_data.csv'
+# process_images_in_folder(folder_path_4, csv_file_path_4)
 
-folder_path_5 = '/Users/zhoudexiao/Downloads/triangulation/frames 5'  # 更新为你的文件夹路径
-csv_file_path_5 = '/Users/zhoudexiao/Downloads/triangulation/frames 5/shapes_data.csv'
-process_images_in_folder(folder_path_5, csv_file_path_5)
+# folder_path_5 = '/Users/zhoudexiao/Downloads/triangulation/frames 5'  # 更新为你的文件夹路径
+# csv_file_path_5 = '/Users/zhoudexiao/Downloads/triangulation/frames 5/shapes_data.csv'
+# process_images_in_folder(folder_path_5, csv_file_path_5)
 
-folder_path_6 = '/Users/zhoudexiao/Downloads/triangulation/frames 6'  # 更新为你的文件夹路径
-csv_file_path_6 = '/Users/zhoudexiao/Downloads/triangulation/frames 6/shapes_data.csv'
-process_images_in_folder(folder_path_6, csv_file_path_6)
+# folder_path_6 = '/Users/zhoudexiao/Downloads/triangulation/frames 6'  # 更新为你的文件夹路径
+# csv_file_path_6 = '/Users/zhoudexiao/Downloads/triangulation/frames 6/shapes_data.csv'
+# process_images_in_folder(folder_path_6, csv_file_path_6)

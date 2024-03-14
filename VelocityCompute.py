@@ -38,8 +38,8 @@ def calculate_speeds(points, time_interval):
 
 
 # 读取CSV文件
-df1 = pd.read_csv('/Users/zhoudexiao/Downloads/triangulation/frames 3/triangles.csv', delimiter=',', quotechar='"')
-df2 = pd.read_csv('/Users/zhoudexiao/Downloads/triangulation/frames 3/rectangles.csv', delimiter=',', quotechar='"')
+df1 = pd.read_csv('/Users/zhoudexiao/Desktop/Project/triangulation/frames 3/triangles.csv', delimiter=',', quotechar='"')
+df2 = pd.read_csv('/Users/zhoudexiao/Desktop/Project/triangulation/frames 3/rectangles.csv', delimiter=',', quotechar='"')
 
 # 通过不同颜色找出目标点
 # 选择感兴趣的行，这里假设我们关注索引为4的行（即第5行）
@@ -59,8 +59,8 @@ plt.scatter(T_x3, T_y3, color='black')
 plt.scatter([R_x1, R_x2, R_x3, R_x4], [R_y1, R_y2, R_y3, R_y4], color='blue')
 
 
-plt.xlim(0, 720)
-plt.ylim(550,0)
+plt.xlim(0, 1920)
+plt.ylim(1080,0)
 
 plt.title('Plot of the Point from First Row')
 plt.xlabel('Column 5 Value')
@@ -96,7 +96,7 @@ total_time = 10  # 总时间为10秒
 time_stamps = np.linspace(1, total_time, N)
 
 # 将数据保存到CSV文件中
-with open('/Users/zhoudexiao/Downloads/triangulation/frames 3/SpeedData.csv', 'w', newline='') as csvfile:
+with open('/Users/zhoudexiao/Desktop/Project/triangulation/frames 3/SpeedData.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['Index', 'Value'])  # 写入标题行
     for i, value in enumerate(speeds, 1):  # 枚举数据并写入CSV

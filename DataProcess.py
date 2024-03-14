@@ -28,7 +28,7 @@ def classify_shapes(input_csv, output_csv_triangle, output_csv_rectangle):
         writer.writerows(rectangles)
 
 # 调用函数
-input_csv = '/Users/zhoudexiao/Downloads/triangulation/frames 3/shapes_data.csv'  # 原始数据文件路径
-output_csv_triangle = '/Users/zhoudexiao/Downloads/triangulation/frames 3/triangles.csv'  # 分类后的三角形数据文件路径
-output_csv_rectangle = '/Users/zhoudexiao/Downloads/triangulation/frames 3/rectangles.csv'  # 分类后的四边形数据文件路径
+input_csv = '/Users/zhoudexiao/Desktop/Project/triangulation/frames 3/shapes_data.csv'  # 原始数据文件路径
+output_csv_triangle = '/Users/zhoudexiao/Desktop/Project/triangulation/frames 3/triangles.csv'  # 分类后的三角形数据文件路径
+output_csv_rectangle = '/Users/zhoudexiao/Desktop/Project/triangulation/frames 3/rectangles.csv'  # 分类后的四边形数据文件路径
 classify_shapes(input_csv, output_csv_triangle, output_csv_rectangle)
