@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import math
 import numpy as np
+import csv
+
 from scipy.interpolate import make_interp_spline
 
 def edge_extend(arr, extend_size=1):
@@ -92,7 +94,15 @@ N = len(speeds)
 total_time = 10  # 总时间为10秒
 # 生成对应每个速度点的时间戳列表
 time_stamps = np.linspace(1, total_time, N)
-speeds_smooth = moving_average(speeds, window_size=3)
+
+# 将数据保存到CSV文件中
+with open('/Users/zhoudexiao/Downloads/triangulation/frames 3/SpeedData.csv', 'w', newline='') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow(['Index', 'Value'])  # 写入标题行
+    for i, value in enumerate(speeds, 1):  # 枚举数据并写入CSV
+        writer.writerow([i, value])
+
+# speeds_smooth = moving_average(speeds, window_size=3)
 # 绘制速度图像
 plt.plot(time_stamps, speeds, marker='o', linestyle='-', color='b', label='Speed')
 # 添加图表标题和坐标轴标签

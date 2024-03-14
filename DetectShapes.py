@@ -61,7 +61,7 @@ def detect_shapes(image_path):
         # 选择性地展示处理后的图像
         cv2.drawContours(img, [cnt], 0, color, 2)  # 在原图上标记轮廓
         cv2.imshow("Contours Detected", img)
-        # cv2.waitKey(1)
+        cv2.waitKey(1)
         # cv2.destroyAllWindows()
 
     return contours_info
